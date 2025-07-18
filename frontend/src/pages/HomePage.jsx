@@ -79,8 +79,7 @@ const { mutate, isPending, error } = useMutation({
                   Meet new friends
                 </h2>
                 <p className="opacity-70">
-                  Discover perfect language exchange partners based on your
-                  profile
+                  Discover your hobby buddy! share experience and get knowledge
                 </p>
               </div>
             </div>
