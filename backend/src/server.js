@@ -31,13 +31,14 @@ app.use("/api/v1/auth" , authRoute) ;
 app.use("/api/v1/user" , userRouter) ; 
 app.use("/api/v1/chat" , chatRouter) ; 
 
-if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(__dirname,"../frontend/dist")))
-}
+// if(process.env.NODE_ENV === "production"){
+//     app.use(express.static(path.join(__dirname,"../frontend/dist")))
+// }
 
-app.get("*" , (req , res)=>{
-    res.sendFile(path.join(__dirname ,"../frontend" , "dist" , "index.html"))
-})
+// app.get("*" , (req , res)=>{
+//     res.sendFile(path.join(__dirname ,"../frontend" , "dist" , "index.html"))
+// })
+
 const PORT= process.env.PORT|| 6000 ;
 console.log(PORT);
 app.listen(8000, ()=>{

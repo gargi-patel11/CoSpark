@@ -11,7 +11,7 @@ export default function OnboardingPage() {
   const queryClient = useQueryClient();
 
   const [onboardingData, setOnboardingData] = useState({
-    fullName : authUser?.fullName ||"" , 
+    fullName: authUser?.fullName || "",
     bio: authUser?.bio || "",
     hobbies: authUser?.hobbies || "",
     location: authUser?.location || "",
@@ -25,20 +25,26 @@ export default function OnboardingPage() {
       toast.success("Onboarding Compele");
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
-    onError:(error)=>{
-      toast.error(error.response.data.message)
-    }
+    onError: (error) => {
+      toast.error(error.response.data.message);
+    },
   });
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(onboardingData)
+    console.log(onboardingData);
     mutate(onboardingData);
   };
 
   const handleGenerateAvatar = () => {
-    const index = Math.floor(Math.random() * 100) + 1;
-    const profile = `https://avatar.iran.liara.run/public/${index}`;
+    const chars =
+      "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let seed = "";
+    for (let i = 0; i < 8; i++) {
+      seed += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    const profile = `https://robohash.org/${seed}`;
 
     setOnboardingData({ ...onboardingData, profilePic: profile });
     toast.success("Avatar changed successfully");
@@ -174,7 +180,6 @@ export default function OnboardingPage() {
               className=" relative btn btn-primary w-full top-12"
               disabled={isPending}
               type="submit"
-
             >
               {!isPending ? (
                 <>
